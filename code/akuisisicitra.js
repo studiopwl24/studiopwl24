@@ -15,7 +15,7 @@ var startDate = '2013-01-01';
 var endDate = '2013-12-31';
 var cloudCover = 100
 
-var collection = ee.ImageCollection('LANDSAT/LC0/C02/T1_L2')
+var collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
                   .filterBounds(geometry)
                   .filterDate(startDate, endDate)
                   .filterMetadata('CLOUD_COVER_LAND', 'less_than', cloudCover)
@@ -25,4 +25,7 @@ Map.addLayer(collection.mode().clip(geometry))
 
 print(collection)
 
-Export.image.toDrive(collection.mode().clip(geometry))
+Export.image.toDrive({
+  image: collection.mode().clip(geometry).select('SR_B2'),
+  maxPixels: 1e13,
+});
