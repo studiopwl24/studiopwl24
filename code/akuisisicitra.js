@@ -1,22 +1,21 @@
 var geometry = 
-    /* color: #ffc82d */
-    /* shown: false */
+    /* color: #d63000 */
     /* displayProperties: [
       {
         "type": "rectangle"
       }
     ] */
     ee.Geometry.Polygon(
-        [[[103.08934596742121, -3.2818853922385323],
-          [103.08934596742121, -5.931748179707984],
-          [106.90160182679621, -5.931748179707984],
-          [106.90160182679621, -3.2818853922385323]]], null, false);
+        [[[102.9335574434633, -3.4551292540483085],
+          [102.9335574434633, -6.944795991299321],
+          [107.2951297090883, -6.944795991299321],
+          [107.2951297090883, -3.4551292540483085]]], null, false);
 
 var startDate = '2013-01-01';
 var endDate = '2013-12-31';
-var cloudCover = 10
+var cloudCover = 100
 
-var collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
+var collection = ee.ImageCollection('LANDSAT/LC0/C02/T1_L2')
                   .filterBounds(geometry)
                   .filterDate(startDate, endDate)
                   .filterMetadata('CLOUD_COVER_LAND', 'less_than', cloudCover)
